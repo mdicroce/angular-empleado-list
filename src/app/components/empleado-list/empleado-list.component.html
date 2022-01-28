@@ -1,0 +1,29 @@
+<div class="container">
+	<app-count-empleados [todos]="getCuantity('t')" [fem]="getCuantity('f')" [mas]="getCuantity('m')" (countRadioButtonChange)="empleadoCountRadioButtonChange($event)"></app-count-empleados>
+	<div class="card mt-3">
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th >Legajo</th>
+						<th >Nombre</th>
+						<th >Apellido</th>
+						<th >Sexo</th>
+						<th >Salario</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ng-container *ngFor="let empleado of listEmpleados">
+						<tr *ngIf="radioButtonSeleccionado === 't' || radioButtonSeleccionado === empleado.sexo">
+							<td >{{ empleado.legajo }}</td>
+							<td> {{empleado.nombre}} </td>
+							<td> {{ empleado.apellido }} </td>
+							<td> {{ empleado.sexo === 'm' ? 'Masculino' : 'Femenino' }} </td>
+							<td> {{ empleado.salario | currency }} </td>
+						</tr>
+					</ng-container>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
